@@ -4,6 +4,7 @@ W = 800
 H = 600
 RED = (255, 0, 0)
 BLUE = (0, 0, 100)
+move = 1
 
 pygame.init()
 pygame.display.set_caption('Текст')
@@ -27,7 +28,14 @@ while run:
         elif e.type == pygame.KEYDOWN:
             if e.key == pygame.K_ESCAPE:
                 run = False
-
+    if move == 1:
+        square_rect.move_ip(1,0)
+        if square_rect > W:
+            move = 2
+    if move == 2:
+        square_rect.move_ip(-1, 0)
+        if square_rect < 0:
+            move = 1
     screen.fill(BLUE)
     screen.blit(square, square_rect)
     screen.blit(text, text_rect)
